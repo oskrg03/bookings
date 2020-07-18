@@ -1,68 +1,90 @@
 <div class="container">
 
-  <div class=" container row-lg-12 filters">
-
-    <div class="col-md-6">
+  <div class=" container ">
+    <div class="row filters">
+      <div class="col">
+        <label for="">BookingID</label>
         <form class="form">
-            <div>
-              <div class="input-group">
-                <div class="input-group-prepend">
-      
-                  <div class="input-group-text">
-                    <fa-icon [icon]="faSearch"></fa-icon>
-      
-                  </div>
+          <div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+
+                <div class="input-group-text">
+                  <fa-icon [icon]="faSearch"></fa-icon>
+
                 </div>
-                <input [(ngModel)]="searchWord" name="searchWord" class="form-control mr-sm-2 col-md-6" type="number"
-                  placeholder="ingrese boking id" (ngModelChange)="buscar()" />
-      
-                <!-- <button class="btn search my-0 my-sm-0" (click)=buscar()>Buscar</button> -->
+              </div>
+              <input [(ngModel)]="searchValue" name="searchValue" class="form-control mr-sm-2" type="number" min="0"
+                placeholder="ingrese boking id" (ngModelChange)="buscar()" />
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col" style="margin-top: 2em">
+            <div class="dropdown">
+              <button style="width: 8em;" class="btn btn-secondary dropdown-toggle" type="button"
+                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{choosed}}
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" (click)="choosedMethod('y')">y</a>
+                <a class="dropdown-item" (click)="choosedMethod('>=')">>=</a>
+                <a class="dropdown-item" (click)="choosedMethod('<=')">
+                  <=</a> </div> </div> </div> <div class="col">
+                    <label for="">Precio</label>
+                    <input [(ngModel)]="precio" class="form-control " type="number" min="0" (ngModelChange)="filtrar()">
               </div>
             </div>
-          </form>
-      
-    </div>
 
-    <div class="col-md-6">
-     
+
+          </div>
+        </div>
+
+
+        <!-- <div class="col">
         <div class="range-slider row">
-              <input [(ngModel)]="slider" class="range-slider-range col" type="range" value="100" min="0" max="500"
+          
+              <input [(ngModel)]="slider" class="range-slider-range col " type="range" value="100" min="0" max="500"
                 (change)="filtrar()">
                 <label for="" class="col"><span class="range-slider-value">
                     <{{slider*1000}} </span> 
                 </label> 
         </div>
        
+    </div> -->
+      </div>
+
+
+
+
+      <table class="table">
+        <thead>
+          <tr>
+
+            <th scope="col">BookingId</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Fecha de creación</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Precio</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of BookingListFiltered ">
+
+            <td>{{booking.bookingID}}</td>
+            <td>{{booking.cliente}}</td>
+            <td>{{booking.fecha_creacion.toDateString()}}</td>
+            <td>{{booking.direccion}}</td>
+            <td>{{booking.precio | currency:'USD':'symbol':'1.0'}}</td>
+
+
+          </tr>
+
+        </tbody>
+      </table>
     </div>
-</div>
-
-
-
-
-<table class="table">
-  <thead>
-    <tr>
-
-      <th scope="col">bookingId</th>
-      <th scope="col">Cliente</th>
-      <th scope="col">Fecha de creación</th>
-      <th scope="col">Dirección</th>
-      <th scope="col">Precio</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let booking of BookingList ">
-
-      <td>{{booking.bookingID}}</td>
-      <td>{{booking.cliente}}</td>
-      <td>{{booking.fecha_creacion.toDateString()}}</td>
-      <td>{{booking.direccion}}</td>
-      <td>{{booking.precio | currency:'USD':'symbol':'1.0'}}</td>
-
-
-    </tr>
-
-  </tbody>
-</table>
-</div>
