@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   constructor(private api: ApiBookingsService, private router: Router) {}
 
   ngOnInit(): void {
+    //Si el usuario inició sesión, se obtienen los bookings, de lo contrario se redirige al inicio de sesión
     let token = localStorage.getItem('token');
 
     if (token == null) {
@@ -32,7 +33,8 @@ export class HomeComponent implements OnInit {
   getBookings() {
     this.api.getBookings().then((data) => {
       this.data = data;
-
+      /*Se recorren los bookings obtenidos y se crean nuevos objetos
+       simplificados de la información que solicitan para visualizar*/
       this.data.forEach((element) => {
         console.log(element.bookingId);
         let booking: BookingToShow = {
@@ -68,6 +70,7 @@ buscar(){
   }
 }
 
+//Cada que se escoga una opción de filtrado, se procederá a filtrar la información
 choosedMethod(opcion){
   this.choosed = opcion;
   
@@ -79,7 +82,7 @@ choosedMethod(opcion){
     this.BookingListFiltered = this.BookingList;
     
     if(this.searchValue>0  || this.precio>0){
-
+      //Se filtra por el bookingid
       if(this.searchValue>0){
         console.log(this.searchValue)
        this.BookingListFiltered =  this.BookingList.filter((item)=>{
@@ -90,7 +93,7 @@ choosedMethod(opcion){
         }
         });
       }
-
+      //Se filtra por precio 
         if(this.choosed=="y"){
           
           this.BookingListFiltered =  this.BookingListFiltered.filter((item)=>{
@@ -123,6 +126,7 @@ choosedMethod(opcion){
       
 
     }else{
+      //En caso de que no se ingrese bookingId y/o precio, los datos son los iniciales.
       this.BookingListFiltered = this.BookingList;
     }
   }

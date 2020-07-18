@@ -8,26 +8,14 @@ import { Booking } from './bookingResponse';
 })
 export class ApiBookingsService {
   url_user = 'https://dev.tuten.cl/TutenREST/rest/user/testapis@tuten.cl';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'content-Type': 'application/json',
-    }),
-  };
+
 
   constructor(private Http: HttpClient) {}
 
+
+  //Método que hace la petición http a la api para validar al usuario ingresado
   async validarUser(email, password, app) {
-    // let headers = new HttpHeaders();
-    // headers
-    //   .set('Content-Type', 'application/json')
-    //   .set('password', "1234")
-    //   .set('app', "APP_BCK")
-    //   .set('Accept', 'application/json')
-    //   .set('Access-Control-Allow-Origin', '*');
-
-    // console.log(headers);
-    // return this.Http.put<any>(this.url_user, headers);
-
+ 
     var settings: any = {
       url: 'https://dev.tuten.cl/TutenREST/rest/user/'+email,
       method: 'PUT',
@@ -53,7 +41,7 @@ export class ApiBookingsService {
     return data;
     // return data;
   }
-
+  //Método para obtener todos los bookings con el contacto y el token obtenido del inicio de sesión
   async getBookings(){
     const adminemail = "testapis@tuten.cl";
     const email = "contacto@tuten.cl";
