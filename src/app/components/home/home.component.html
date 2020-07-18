@@ -1,0 +1,68 @@
+<div class="container">
+
+  <div class=" container row-lg-12 filters">
+
+    <div class="col-md-6">
+        <form class="form">
+            <div>
+              <div class="input-group">
+                <div class="input-group-prepend">
+      
+                  <div class="input-group-text">
+                    <fa-icon [icon]="faSearch"></fa-icon>
+      
+                  </div>
+                </div>
+                <input [(ngModel)]="searchWord" name="searchWord" class="form-control mr-sm-2 col-md-6" type="number"
+                  placeholder="ingrese boking id" (ngModelChange)="buscar()" />
+      
+                <!-- <button class="btn search my-0 my-sm-0" (click)=buscar()>Buscar</button> -->
+              </div>
+            </div>
+          </form>
+      
+    </div>
+
+    <div class="col-md-6">
+     
+        <div class="range-slider row">
+              <input [(ngModel)]="slider" class="range-slider-range col" type="range" value="100" min="0" max="500"
+                (change)="filtrar()">
+                <label for="" class="col"><span class="range-slider-value">
+                    <{{slider*1000}} </span> 
+                </label> 
+        </div>
+       
+    </div>
+</div>
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+
+      <th scope="col">bookingId</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Fecha de creación</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Precio</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let booking of BookingList ">
+
+      <td>{{booking.bookingID}}</td>
+      <td>{{booking.cliente}}</td>
+      <td>{{booking.fecha_creacion.toDateString()}}</td>
+      <td>{{booking.direccion}}</td>
+      <td>{{booking.precio | currency:'USD':'symbol':'1.0'}}</td>
+
+
+    </tr>
+
+  </tbody>
+</table>
+</div>
