@@ -1,6 +1,9 @@
 <div class="container col-md-8">
     <h1 class="card-text"> Inicio de sesión</h1>
   <form [formGroup]="form">
+    <div *ngIf="error!=''" class="alert alert-danger" role="alert">
+     {{error}}
+    </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Email</label>
       <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" required>

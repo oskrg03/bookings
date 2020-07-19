@@ -9,18 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  error = "";
   constructor(private api: ApiBookingsService, private router: Router) {
 
+    this.form.valueChanges.subscribe((setvalue)=>{
+      this.error="";
+    })
+    
+  }
+
+  ngOnInit(): void {
      
     let token = localStorage.getItem('token');
 
     if (token.toString() !== "null") {
       this.router.navigate(['home']);
     }
-  }
-
-  ngOnInit(): void {
-  
   }
 
   form = new FormGroup({
@@ -40,6 +44,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', data.sessionTokenBck);
         this.router.navigate(['home']);
       }
+    }).catch((error)=>{
+      
+      this.error="Error, los datos en el formulario no son correctos"
+      
     });
   }
 }
