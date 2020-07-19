@@ -17,17 +17,29 @@ export class HomeComponent implements OnInit {
   searchValue = 0;
   choosed = "y";
   precio = 0;
+  isCollapse = true;
   constructor(private api: ApiBookingsService, private router: Router) {}
 
+  toggleState() {
+    let foo = this.isCollapse;
+    this.isCollapse = foo === false ? true : false;
+  }
+
   ngOnInit(): void {
+    
     //Si el usuario inició sesión, se obtienen los bookings, de lo contrario se redirige al inicio de sesión
     let token = localStorage.getItem('token');
 
-    if (token == null) {
+    if (token.toString() == "null") {
       this.router.navigate(['login']);
     } else {
       this.getBookings();
     }
+  }
+
+  salir(){
+    localStorage.setItem("token", null)
+    this.router.navigate(['login']);
   }
 
   getBookings() {

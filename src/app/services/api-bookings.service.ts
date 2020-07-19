@@ -10,7 +10,7 @@ export class ApiBookingsService {
   url_user = 'https://dev.tuten.cl/TutenREST/rest/user/testapis@tuten.cl';
 
 
-  constructor(private Http: HttpClient) {}
+  constructor() {}
 
 
   //Método que hace la petición http a la api para validar al usuario ingresado

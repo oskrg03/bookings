@@ -9,14 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private api: ApiBookingsService, private router: Router) {}
+  constructor(private api: ApiBookingsService, private router: Router) {
 
-  ngOnInit(): void {
+     
     let token = localStorage.getItem('token');
 
-    if (token != null) {
+    if (token.toString() !== "null") {
       this.router.navigate(['home']);
     }
+  }
+
+  ngOnInit(): void {
+  
   }
 
   form = new FormGroup({
