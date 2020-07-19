@@ -192,7 +192,7 @@ Login.html
 
 ```
 
-### Paso 6: home.ts y home.html
+### Paso 7: home.ts y home.html
 
 home.ts
 ```
@@ -402,7 +402,7 @@ home.html
 
 ```
 
-### Paso 7: estilos al gusto. 
+### Paso 8: estilos al gusto. 
 
 
 ## Running
